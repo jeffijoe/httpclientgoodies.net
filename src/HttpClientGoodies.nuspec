@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>HttpClientGoodies</id>
+        <version>0.0.1</version>
+        <title>HttpClientGoodiester for .NET</title>
+        <authors>Jeff Hansen</authors>
+        <owners>Jeff Hansen</owners>
+        <projectUrl>https://github.com/jeffijoe/messageformat.net</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Useful utilities for working with the .NET HttpClient</description>
+        <summary>Useful utilities for working with the .NET HttpClient</summary>
+        <releaseNotes>
+            Initial release.
+        </releaseNotes>
+        <copyright>Copyright © Jeff Hansen 2016 to present. All rights reserved.</copyright>
+        <language>en-US</language>
+        <tags>httpclient,http,utilities,json,helpers,xamarin,pcl</tags>
+    </metadata>
+    <files>
+        <file src="Jeffijoe.HttpClientGoodies\bin\Release\Jeffijoe.HttpClientGoodies.dll" target="lib\portable-net45+sl5+wp8+win8+wpa81+MonoTouch1+MonoAndroid1\Jeffijoe.HttpClientGoodies.dll" />
+        <file src="Jeffijoe.HttpClientGoodies\bin\Release\Jeffijoe.HttpClientGoodies.pdb" target="lib\portable-net45+sl5+wp8+win8+wpa81+MonoTouch1+MonoAndroid1\Jeffijoe.HttpClientGoodies.pdb" />
+    </files>
+</package>
