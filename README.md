@@ -1,7 +1,7 @@
 # HttpClientGoodies.NET
 
 [![Build status](https://ci.appveyor.com/api/projects/status/v8bx4kl22po40vso?svg=true)](https://ci.appveyor.com/project/jeffijoe/httpclientgoodies-net)
-[![NuGet](https://img.shields.io/nuget/v/Nuget.Core.svg?maxAge=2592000)](nuget.org/packages/HttpClientGoodies)
+[![NuGet](https://img.shields.io/nuget/v/HttpClientGoodies.svg?maxAge=2592000)](http://nuget.org/packages/HttpClientGoodies)
 
 A set of useful utilities for the .NET HttpClient.
 

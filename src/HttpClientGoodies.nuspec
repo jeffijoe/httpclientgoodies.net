@@ -8,7 +8,9 @@
         <owners>Jeff Hansen</owners>
         <projectUrl>https://github.com/jeffijoe/messageformat.net</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Useful utilities for working with the .NET HttpClient</description>
+        <description>
+            Useful utilities for working with the .NET HttpClient, such as a fluent Request Builder and sending/receiving JSON.
+        </description>
         <summary>Useful utilities for working with the .NET HttpClient</summary>
         <releaseNotes>
             Initial release.
