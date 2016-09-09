@@ -19,8 +19,8 @@
         <language>en-US</language>
         <tags>httpclient,http,utilities,json,helpers,xamarin,pcl</tags>
         <dependencies>
-          <dependency id="Microsoft.Net.Http" version="*" />
-          <dependency id="Newtonsoft.Json" version="*" />
+          <dependency id="Microsoft.Net.Http" />
+          <dependency id="Newtonsoft.Json" />
         </dependencies>
     </metadata>
     <files>
