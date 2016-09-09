@@ -79,6 +79,18 @@ namespace Jeffijoe.HttpClientGoodies
             throw new HttpResponseException(message);
         }
 
+        /// <summary>
+        /// Helper to read a response message as json without needing intermediary variables.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="task"></param>
+        /// <returns></returns>
+        public static async Task<T> AsJson<T>(this Task<HttpResponseMessage> task, JsonSerializerSettings settings = null) where T : class
+        {
+            var resp = await task;
+            return await resp.Content.ReadAsJsonAsync<T>(settings);
+        }
+
         #endregion
     }
 }

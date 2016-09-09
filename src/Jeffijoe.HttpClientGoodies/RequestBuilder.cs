@@ -12,6 +12,7 @@ using System.Net.Http.Headers;
 using System.Text;
 
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace Jeffijoe.HttpClientGoodies
 {
@@ -22,6 +23,15 @@ namespace Jeffijoe.HttpClientGoodies
     // ReSharper disable ParameterHidesMember
     public class RequestBuilder
     {
+        #region Statics
+
+        /// <summary>
+        /// Default http client used when calling <see cref="SendAsync"/> without a client instance.
+        /// </summary>
+        private static HttpClient defaultClient = new HttpClient();
+
+        #endregion
+
         #region Fields
 
         /// <summary>
@@ -330,8 +340,7 @@ namespace Jeffijoe.HttpClientGoodies
         /// </returns>
         public RequestBuilder JsonContent<T>(T objToSerialize, JsonSerializerSettings serializerSettings = null)
         {
-            this.RequestMessage.Content = new JsonContent(objToSerialize, serializerSettings);
-            return this;
+            return this.Content(new JsonContent(objToSerialize, serializerSettings));
         }
 
         /// <summary>
@@ -435,6 +444,100 @@ namespace Jeffijoe.HttpClientGoodies
 
             this.message.RequestUri = uri;
             return this.message;
+        }
+
+        /// <summary>
+        /// Shortcut to sending this request using a given http client, or a default one if not specified.
+        /// </summary>
+        /// <param name="client">Client to send from.</param>
+        /// <returns>A task.</returns>
+        public Task<HttpResponseMessage> SendAsync(HttpClient client = null)
+        {
+            return (client ?? defaultClient).SendAsync(this.ToHttpRequestMessage());
+        }
+
+        #endregion
+
+        #region Static methods
+
+        /// <summary>
+        /// Shortcut for GET requests.
+        /// </summary>
+        /// <param name="uri">Optional URI to set.</param>
+        /// <returns>A request builder.</returns>
+        public static RequestBuilder Get(string uri = null)
+        {
+            return new RequestBuilder().Uri(uri).Method(HttpMethod.Get);
+        }
+
+        /// <summary>
+        /// Shortcut for POST requests.
+        /// </summary>
+        /// <param name="uri">Optional URI to set.</param>
+        /// <returns>A request builder.</returns>
+        public static RequestBuilder Post(string uri = null)
+        {
+            return new RequestBuilder().Uri(uri).Method(HttpMethod.Post);
+        }
+
+        /// <summary>
+        /// Shortcut for POST requests.
+        /// </summary>
+        /// <param name="uri">Optional URI to set.</param>
+        /// <returns>A request builder.</returns>
+        public static RequestBuilder Patch(string uri = null)
+        {
+            return new RequestBuilder().Uri(uri).Method(new HttpMethod("PATCH"));
+        }
+
+        /// <summary>
+        /// Shortcut for POST requests.
+        /// </summary>
+        /// <param name="uri">Optional URI to set.</param>
+        /// <returns>A request builder.</returns>
+        public static RequestBuilder Delete(string uri = null)
+        {
+            return new RequestBuilder().Uri(uri).Method(HttpMethod.Delete);
+        }
+
+        /// <summary>
+        /// Shortcut for HEAD requests.
+        /// </summary>
+        /// <param name="uri">Optional URI to set.</param>
+        /// <returns>A request builder.</returns>
+        public static RequestBuilder Head(string uri = null)
+        {
+            return new RequestBuilder().Uri(uri).Method(HttpMethod.Head);
+        }
+
+        /// <summary>
+        /// Shortcut for OPTIONS requests.
+        /// </summary>
+        /// <param name="uri">Optional URI to set.</param>
+        /// <returns>A request builder.</returns>
+        public static RequestBuilder Options(string uri = null)
+        {
+            return new RequestBuilder().Uri(uri).Method(HttpMethod.Options);
+        }
+
+        /// <summary>
+        /// Shortcut for PUT requests.
+        /// </summary>
+        /// <param name="uri">Optional URI to set.</param>
+        /// <returns>A request builder.</returns>
+        public static RequestBuilder Put(string uri = null)
+        {
+            return new RequestBuilder().Uri(uri).Method(HttpMethod.Put);
+        }
+
+        /// <summary>
+        /// Shortcut for TRACE requests.
+        /// </summary>
+        /// <param name="uri">Optional URI to set.</param>
+        /// <returns>A request builder.</returns>
+        public static RequestBuilder Trace(string uri = null)
+        {
+            return new RequestBuilder().Uri(uri).Method(HttpMethod.Trace);
         }
 
         #endregion

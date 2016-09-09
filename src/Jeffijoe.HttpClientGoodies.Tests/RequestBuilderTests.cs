@@ -11,6 +11,9 @@ using Shouldly;
 
 using Xunit;
 using Xunit.Abstractions;
+using HttpMock;
+using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace Jeffijoe.HttpClientGoodies.Tests
 {
@@ -108,6 +111,62 @@ namespace Jeffijoe.HttpClientGoodies.Tests
 
             req.RequestUri.ShouldBe(new Uri("http://google.com"));
             req.Headers.Authorization.Parameter.ShouldBe("dGVzdDp0ZXN0");
+        }
+            
+        /// <summary>
+        /// Verifies that we can send a request without passing in a client.
+        /// </summary>
+        [Fact]
+        public async Task CanSendWithNoClientPassed()
+        {
+            var mock = HttpMockRepository.At("http://localhost:9191");
+            mock.Stub(x => x.Get("/data"))
+                .Return("{ \"Name\": \"Jeff\" }")
+                .OK();
+
+            var resp = await new RequestBuilder()
+                .Uri("http://localhost:9191/data")
+                .SendAsync();
+
+            Data data = await resp.Content.ReadAsJsonAsync<Data>();
+            data.Name.ShouldBe("Jeff");
+        }
+
+        /// <summary>
+        /// Verifies that we can send a request when passing in a client.
+        /// </summary>
+        [Fact]
+        public async Task CanSendWithClientPassed()
+        {
+            var mock = HttpMockRepository.At("http://localhost:9191");
+            mock.Stub(x => x.Get("/data"))
+                .Return("{ \"Name\": \"Jeff\" }")
+                .OK();
+
+            using (var client = new HttpClient())
+            {
+                Data data = await new RequestBuilder()
+                    .Uri("http://localhost:9191/data")
+                    .SendAsync(client)
+                    .AsJson<Data>();
+
+                data.Name.ShouldBe("Jeff");
+            }    
+        }
+
+        [Fact]
+        public void StaticMethodHelpers()
+        {
+            const string expected = "http://localhost:9191/data";
+            var builder = RequestBuilder.Get(expected);
+            var msg = builder.ToHttpRequestMessage();
+            msg.Method.ShouldBe(HttpMethod.Get);
+            msg.RequestUri.ShouldBe(new Uri(expected));
+        }
+
+        private class Data
+        {
+            public string Name { get; set; }
         }
 
         #endregion

@@ -18,6 +18,10 @@
         <copyright>Copyright © Jeff Hansen 2016 to present. All rights reserved.</copyright>
         <language>en-US</language>
         <tags>httpclient,http,utilities,json,helpers,xamarin,pcl</tags>
+        <dependencies>
+          <dependency id="Microsoft.Net.Http" />
+          <dependency id="Newtonsoft.Json" />
+        </dependencies>
     </metadata>
     <files>
         <file src="Jeffijoe.HttpClientGoodies\bin\Release\Jeffijoe.HttpClientGoodies.dll" target="lib\portable-net45+sl5+wp8+win8+wpa81+MonoTouch1+MonoAndroid1\Jeffijoe.HttpClientGoodies.dll" />
