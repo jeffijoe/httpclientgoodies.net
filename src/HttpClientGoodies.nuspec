@@ -2,11 +2,11 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>HttpClientGoodies</id>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
         <title>HttpClientGoodiester for .NET</title>
         <authors>Jeff Hansen</authors>
         <owners>Jeff Hansen</owners>
-        <projectUrl>https://github.com/jeffijoe/messageformat.net</projectUrl>
+        <projectUrl>https://github.com/jeffijoe/httpclientgoodies.net</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>
             Useful utilities for working with the .NET HttpClient, such as a fluent Request Builder and sending/receiving JSON.
