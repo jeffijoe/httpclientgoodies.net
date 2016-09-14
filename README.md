@@ -24,16 +24,14 @@ var dataToSend = new Todo {
     Text = 'Install this package'
 };
 
-var createdTodo = new RequestBuilder()
+var createdTodo = RequestBuilder.Post('http://api.todos.com/todos/{id}')
     .BasicAuthentication("username", "password")
-    .Uri('http://api.todos.com/todos/{id}')
     .AddUrlSegment("id", 123)
-    .Method(HttpMethod.Post)
     .JsonContent(dataToSend)
     .SendAsync()
-    .AsJson<Todo>()
+    .AsJson<Todo>();
 
-Console.WriteLine(createdTodo.Text)
+Console.WriteLine(createdTodo.Text);
 ```
 
 ## That's cool, what else can it do?
