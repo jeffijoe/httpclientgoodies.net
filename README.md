@@ -24,7 +24,7 @@ var dataToSend = new Todo {
     Text = 'Install this package'
 };
 
-var createdTodo = RequestBuilder.Post('http://api.todos.com/todos/{id}')
+var createdTodo = await RequestBuilder.Post('http://api.todos.com/todos/{id}')
     .BasicAuthentication("username", "password")
     .AddUrlSegment("id", 123)
     .JsonContent(dataToSend)
